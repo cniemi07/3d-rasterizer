@@ -59,15 +59,26 @@ def draw_line(x0, y0, x1, y1):
     if abs(x1-x0) > abs(y1-y0):
         draw_lineH(x0, y0, x1, y1)
     else: draw_lineV(x0, y0, x1, y1)
-
+def draw_cube(front, back):
+    for i in range(len(front)):
+        draw_line(*front[i], *back[i])
+    for i in range(len(front)):
+        draw_line(*front[i], *front[(i + 1) % 4])
+    for i in range(len(front)):
+        draw_line(*back[i], *back[(i + 1) % 4])
+    
     
             
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+front = [(300, 200), (500, 200), (500, 400), (300, 400)]
+back =  [(380, 120), (580, 120), (580, 320), (380, 320)]
+draw_cube(front, back)
 
 run = True
 while run:
 
-    draw_line(200, 200, 150, 50)
+ 
+            
 
     
 
