@@ -13,6 +13,10 @@ clock = pg.time.Clock()
 
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+pg.mouse.set_visible(False)
+pg.event.set_grab(True)
+pg.mouse.get_rel() 
+
 front_3d = [(-1, 1, 3), (1, 1, 3), (1, -1, 3), (-1, -1, 3)]
 back_3d  = [(-1, 1, 5), (1, 1, 5), (1, -1, 5), (-1, -1, 5)]
 
