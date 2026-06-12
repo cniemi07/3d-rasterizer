@@ -1,10 +1,14 @@
 import pygame
 import math
-
+import camera as cm
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 focal_length = 350
-def rotateY(x, y, z,  theta):
+
+
+
+   
+def rotateY(x, y, z, theta):
     new_x = x*math.cos(theta) +  z*math.sin(theta)
     new_z = -x*math.sin(theta) + z*math.cos(theta)
     new_y = y
@@ -80,13 +84,21 @@ def draw_cube(screen, front, back):
     
 def project(x, y, z):
 
-    if z > 0:
+    near_plane = 0.5
+    if z > near_plane:
         x_screen = (x * focal_length) / z
         y_screen = (y * focal_length) / z
-            
         x_pixel = x_screen + (SCREEN_WIDTH / 2)
         y_pixel = -y_screen + (SCREEN_HEIGHT / 2)
-
         return (int(x_pixel), int(y_pixel))
-    else: 
+    else:
         return None
+def render(screen, objects):
+   for obj in objects:
+        front_view = [cm.world_to_view(*p) for p in obj["front"]]
+        back_view = [cm.world_to_view(*p) for p in obj["back"]]
+
+        front_2d = [project(*p) for p in front_view]
+        back_2d = [project(*p) for p in back_view]
+
+        draw_cube(screen, front_2d, back_2d)
