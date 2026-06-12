@@ -1,5 +1,6 @@
 import pygame
 import drawing as dw
+import camera as cm
 pygame.init()
 
 SCREEN_WIDTH = 800
@@ -29,8 +30,8 @@ while run:
    front_rotated = [(x, y, z + 4) for (x, y, z) in front_rotated]
    back_rotated = [(x, y, z + 4) for (x, y, z) in back_rotated]
 
-   front_2d = [dw.project(*p) for p in front_rotated]
-   back_2d = [dw.project(*p) for p in back_rotated]
+   front_2d = [dw.project(*p) for p in front_3d]
+   back_2d = [dw.project(*p) for p in back_3d]
 
    dw.draw_cube(screen, front_2d, back_2d)
    
@@ -47,7 +48,7 @@ while run:
            dw.focal_length -= 10
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
            theta += .05
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d] or pygame.MOUSEBUTTONDOWN:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
            theta -= .05
         
         
