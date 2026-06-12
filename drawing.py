@@ -4,7 +4,7 @@ import math
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 focal_length = 350
-def rotateY(theta, x, y, z):
+def rotateY(x, y, z,  theta):
     new_x = x*math.cos(theta) +  z*math.sin(theta)
     new_z = -x*math.sin(theta) + z*math.cos(theta)
     new_y = y
